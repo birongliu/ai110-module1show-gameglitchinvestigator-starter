@@ -73,6 +73,17 @@ Initial session state sets `attempts = 1`, but New Game resets to `0`. They shou
 
 ---
 
+### Bug 8 — Changing difficulty does not reset the secret ([app.py:35-36](app.py))
+```python
+if "secret" not in st.session_state:
+    st.session_state.secret = random.randint(low, high)
+```
+The secret is only generated once on first load. Switching difficulty leaves the old secret (and game state) unchanged, so the secret may be outside the new difficulty's range.
+
+**Fix:** Track `st.session_state.difficulty` and regenerate the secret (plus reset all game state) whenever the selected difficulty differs from the stored one.
+
+---
+
 ### Bug 7 — `update_score` rewards wrong "Too High" guesses ([app.py:58-61](app.py))
 ```python
 if outcome == "Too High":
