@@ -103,6 +103,9 @@ if submit:
     if not ok:
         st.session_state.history.append(raw_guess)
         st.error(err)
+    elif guess_int is not None and (guess_int < low or guess_int > high):
+        st.session_state.history.append(guess_int)
+        st.error(f"Out of range! Please enter a number between {low} and {high}.")
     else:
         st.session_state.history.append(guess_int)
 
