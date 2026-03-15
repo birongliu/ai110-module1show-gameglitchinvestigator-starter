@@ -34,25 +34,25 @@ def parse_guess(raw: str):
 
 def check_guess(guess, secret):
     """
-    Compare guess to secret and return the outcome string.
+    Compare guess to secret and return (outcome, message).
 
-    Returns: "Win", "Too High", or "Too Low"
+    Returns: tuple of (outcome_str, hint_message)
     """
     if guess == secret:
-        return "Win"
+        return "Win", "Correct!"
 
     try:
         if guess > secret:
-            return "Too High"
+            return "Too High", "Too high! Try a lower number."
         else:
-            return "Too Low"
+            return "Too Low", "Too low! Try a higher number."
     except TypeError:
         g = str(guess)
         if g == secret:
-            return "Win"
+            return "Win", "Correct!"
         if g > secret:
-            return "Too High"
-        return "Too Low"
+            return "Too High", "Too high! Try a lower number."
+        return "Too Low", "Too low! Try a higher number."
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
