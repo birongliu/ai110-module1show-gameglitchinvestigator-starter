@@ -35,7 +35,8 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 
 1. fixed the low and high hints 
 2. changing diffulty removed the guess input
-3. 
+3. fixed the secret that generated once on first load. Switching difficulty leaves the old secret (and game state) unchanged, so the secret may be outside the new difficulty's range.
+
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
